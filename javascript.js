@@ -1,12 +1,5 @@
-/* Pseudocode GO:
-
-Create function called computerPlay
-Function will return one of 3 values 'Rock', 'Paper', or 'Scissors' (random)
-
-Create function called singleRound
-Function will take 2 parameters playerSelection and computerSelection &
-return string that declares winner of round
-
+/* 
+  Rock-Paper-Scissors - Console based
 */
 
 //Function determines randomly which one computer will choose and return that value
@@ -21,55 +14,64 @@ function computerPlay() {
     }
 }
 
+//Single round function that checks all conditions and who wins and displays round winner & returns score
 function singleRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection == computerSelection) {
         console.log(`It's a tie!`);
-        return 0;
+        return '';
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
         console.log('You lose! Paper beats rock');
-        return -1;
+        return 'computer';
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
         console.log('You lose! Scissors beats paper');
-        return -1;
+        return 'computer';
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         console.log('You lose! Rock beats scissors');
-        return -1;
+        return 'computer';
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
         console.log('You win! Paper beats rock');
-        return 1;
+        return 'player';
     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
         console.log('You win! Scissors beats paper');
-        return 1;
+        return 'player';
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
         console.log('You win! Rock beats scissors');
-        return 1;
+        return 'player';
     }
 }
 
-function calculateWinner(score) {
-    if (score == 0) {
-        console.log(`No winners, it's a tie!`);
-    } else if (score > 0) {
-        console.log(`You won with ${score} point(s) more than computer!`);
+//Extra helper function to check who won
+function calculateWinner(playerScore, computerScore) {
+    if (playerScore == computerScore) {
+        console.log(`No winners, it's a tie! Both players have ${playerScore} point(s).`);
+    } else if (playerScore > computerScore) {
+        console.log(`You won with ${playerScore} point(s) and computer has ${computerScore} point(s).`);
     } else {
-        console.log(`You lost with ${score - (score * 2)} point(s) less than computer.`);
+        console.log(`You lost with ${playerScore} point(s) and computer has ${computerScore} point(s).`);
     }
 
 }
 
-// Starts the game, sets score to 0. Asks user for selection and randomizes computer selection.
+// Sets score to 0. Asks user for selection and randomizes computer selection by function call.
 // Calls to functions and adds score. Then calls for score function.
 function game() {
 
-    let score = 0;
+    let playerScore = 0;
+    let computerScore = 0;
     for (let i = 0; i < 5; i++){
-        let playerSelection = prompt('Enter your selection: ');
+        let playerSelection = prompt('Enter your selection (Rock, Paper, Scissors): ');
         let computerSelection = computerPlay();
-        score += singleRound(playerSelection, computerSelection);
+        let winner = singleRound(playerSelection, computerSelection);
+        
+        if (winner == 'player') {
+            playerScore++;
+        } else if (winner == 'computer') {
+            computerScore++;
+        }
     }
-    calculateWinner(score);
+    calculateWinner(playerScore, computerScore);
 }
 
+// Starts the game.
 game();
-
