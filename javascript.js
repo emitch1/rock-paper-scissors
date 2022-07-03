@@ -1,5 +1,5 @@
 /* 
-  Rock-Paper-Scissors - Console based
+  Rock-Paper-Scissors - WIth GUI
 */
 
 //Function determines randomly which one computer will choose and return that value
@@ -55,23 +55,31 @@ function calculateWinner(playerScore, computerScore) {
 
 // Sets score to 0. Asks user for selection and randomizes computer selection by function call.
 // Calls to functions and adds score. Then calls for score function.
-function game() {
+function game(playerSelection) {
 
+    console.log('test')
     let playerScore = 0;
     let computerScore = 0;
-    for (let i = 0; i < 5; i++){
-        let playerSelection = prompt('Enter your selection (Rock, Paper, Scissors): ');
-        let computerSelection = computerPlay();
-        let winner = singleRound(playerSelection, computerSelection);
-        
-        if (winner == 'player') {
-            playerScore++;
-        } else if (winner == 'computer') {
-            computerScore++;
-        }
+    //for (let i = 0; i < 5; i++){
+        //let playerSelection = prompt('Enter your selection (Rock, Paper, Scissors): ');
+    let computerSelection = computerPlay();
+    let winner = singleRound(playerSelection, computerSelection);
+    
+    if (winner == 'player') {
+        playerScore++;
+    } else if (winner == 'computer') {
+        computerScore++;
     }
+    //}
     calculateWinner(playerScore, computerScore);
 }
 
 // Starts the game.
-game();
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', () => game('rock'));
+
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', () => game('paper'));
+
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', () => game('scissors'));
