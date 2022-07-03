@@ -6,6 +6,15 @@
     margin-right: 20px;
 }
 
+.center {
+    display: flex;
+   
+}
+
+button {
+    flex: auto;
+}
+
 .results, .finalResults{
     font-size: 35px;
     text-align: center;
