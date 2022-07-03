@@ -1,6 +1,12 @@
 .btn {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     font-size: 30px;
-    background-color: #f4f4f4;
+    background-color: lightblue;
+    margin-right: 20px;
+}
+
+.results, .finalResults{
+    font-size: 35px;
+    text-align: center;
 }
